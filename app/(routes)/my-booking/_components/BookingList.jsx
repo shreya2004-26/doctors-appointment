@@ -1,8 +1,18 @@
 import React from 'react'
+import BookingCard from './BookingCard'
 
 const BookingList = () => {
     return (
-        <div>BookingList</div>
+        <div className=' flex flex-col gap-5 w-full '>
+
+            <BookingCard />
+            <BookingCard />
+            <BookingCard />
+            <BookingCard />
+            <BookingCard />
+            <BookingCard />
+            <BookingCard />
+        </div>
     )
 }
 
