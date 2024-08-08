@@ -1,11 +1,24 @@
+"use client"
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Search, SearchIcon } from 'lucide-react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CategoryCard from './CategoryCard'
-import { categories } from '../_db/categories'
+import { getAllCategories } from '../GlobalAPI'
+// import { categories } from '../_db/categories'
 
 const CategoryList = () => {
+    const [categories, setCategories] = useState([]);
+    useEffect(() => {
+        getCategory();
+    }, [])
+    const getCategory = () => {
+        getAllCategories().then((resp) => {
+            setCategories(resp?.categories)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
     return (
         <div className='flex flex-col pt-20 items-center gap-8'>
             <div className='flex flex-col gap-3'>
@@ -22,7 +35,7 @@ const CategoryList = () => {
             <div className='grid grid-cols-1 md:grid-cols-5 lg:grid-cols-6 gap-6'>
                 {categories?.slice(0, 6)?.map((curr, index) =>
                 (<CategoryCard key={index}
-                    image={curr?.icon}
+                    image={curr?.icon?.url}
                     title={curr?.title}
                     slug={curr?.slug} />)
                 )}

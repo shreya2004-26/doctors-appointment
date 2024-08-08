@@ -6,13 +6,13 @@ import React from 'react'
 
 const Header = () => {
     const { user } = useUser();
-    console.log(user);
+    // console.log(user);
     return (
         <div className='px-20'>
             <div className='flex justify-between py-5 px-2 items-center border-b-0 shadow-sm '>
                 <div className='flex gap-8'>
                     <Link href={"/"}>
-                        <Image src='/logo.svg' width={200} height={30} className='w-[180px]' />
+                        <Image src='/logo.svg' width={200} height={30} className='w-[180px]' alt='logo' />
                     </Link>
                 </div>
 
