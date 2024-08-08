@@ -5,20 +5,20 @@ import Image from 'next/image'
 import React from 'react'
 import BookAppointmentDialog from './BookAppointmentDialog'
 
-const DoctorDetails = () => {
+const DoctorDetails = ({ doctor }) => {
     return (
         <div className='flex border p-4 rounded-xl shadow-sm gap-10 items-center'>
-            <Image src='/doctor1.jpg' width={2000} height={200} className='w-[280px] h-[280px] object-cover rounded-xl' />
+            <Image src={doctor?.imgUrl} width={2000} height={200} className='w-[280px] h-[280px] object-cover rounded-xl' />
             <div className='flex flex-col gap-2'>
-                <h2 className='text-xl font-bold'>Dr. Jane Cooper</h2>
-                <h2 className='text-gray-500'>12 Years of Experince</h2>
-                <h2 className='text-gray-500'>547 Carrington Trace Drive, Cornelius</h2>
-                <h2 className='text-xs bg-blue-100 px-2 py-1 text-primary w-fit rounded-full'>Dentist</h2>
+                <h2 className='text-xl font-bold'>{doctor?.name}</h2>
+                <h2 className='text-gray-500'>{`${doctor?.experience} of Experience`}</h2>
+                <h2 className='text-gray-500'>{doctor?.address}</h2>
+                <h2 className='text-xs bg-blue-100 px-2 py-1 text-primary w-fit rounded-full'>{doctor?.category?.[0]}</h2>
                 <div className='flex gap-2 mt-2'>
-                    <Image src='/youtube.png' width={200} height={100} className='w-[25px]' />
-                    <Image src='/linkedin.png' width={200} height={100} className='w-[25px]' />
-                    <Image src='/twitter.png' width={200} height={100} className='w-[25px]' />
-                    <Image src='/facebook.png' width={200} height={100} className='w-[25px]' />
+                    <Image src='/youtube.png' alt='youtube' width={200} height={100} className='w-[25px]' />
+                    <Image src='/linkedin.png' alt='linkedin' width={200} height={100} className='w-[25px]' />
+                    <Image src='/twitter.png' alt='twitter' width={200} height={100} className='w-[25px]' />
+                    <Image src='/facebook.png' alt='twitter' width={200} height={100} className='w-[25px]' />
                 </div>
                 <Dialog>
                     <DialogTrigger asChild>

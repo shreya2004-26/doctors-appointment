@@ -11,7 +11,7 @@ const Hero = () => {
                 {/* {w-fit property is used to fit the content in the box} */}
                 <Button className='w-fit mt-4'>Explore Now</Button>
             </div>
-            <Image src='/doctors.jpg' width={2000} height={200} className='w-[90%] rounded-3xl shadow-sm h-[450px]' />
+            <Image src='/doctors.jpg' alt='doctors' width={2000} height={200} className='w-[90%] rounded-3xl shadow-sm h-[450px]' />
         </div>
     )
 }

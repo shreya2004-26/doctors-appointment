@@ -20,12 +20,12 @@ const CategoryList = () => {
                 </div>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-5 lg:grid-cols-6 gap-6'>
-                <CategoryCard />
-                <CategoryCard />
-                <CategoryCard />
-                <CategoryCard />
-                <CategoryCard />
-                <CategoryCard />
+                {categories?.slice(0, 6)?.map((curr, index) =>
+                (<CategoryCard key={index}
+                    image={curr?.icon}
+                    title={curr?.title}
+                    slug={curr?.slug} />)
+                )}
 
             </div>
         </div>
