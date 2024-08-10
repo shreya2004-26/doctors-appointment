@@ -7,13 +7,13 @@ const page = () => {
     return (
         <div className='max-w-full'>
             <h1 className='text-2xl font-bold mb-5'>My Booking</h1>
-            <Tabs defaultValue="account" className="w-[400px]">
+            <Tabs defaultValue="upcoming" className="w-[400px]">
                 <TabsList>
-                    <TabsTrigger value="account">Upcomming</TabsTrigger>
-                    <TabsTrigger value="password">Expired</TabsTrigger>
+                    <TabsTrigger value="upcoming">Upcomming</TabsTrigger>
+                    <TabsTrigger value="expired">Expired</TabsTrigger>
                 </TabsList>
-                <TabsContent value="account"><BookingList /></TabsContent>
-                <TabsContent value="password"><BookingList /></TabsContent>
+                <TabsContent value="upcoming"><BookingList tabValue="upcoming" /></TabsContent>
+                <TabsContent value="expired"><BookingList tabValue="expired" /></TabsContent>
             </Tabs>
 
         </div>

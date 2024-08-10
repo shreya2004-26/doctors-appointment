@@ -20,7 +20,7 @@ const BookAppointmentDialog = () => {
     date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate()
   );
   const [note, setNote] = useState("");
-  const [timeSlot, setSelectedTimeSlot] = useState();
+  const [timeSlot, setSelectedTimeSlot] = useState("");
   const { user } = useUser();
   console.log("user is ", user);
   const doctorId = usePathname().split("/")[2];
@@ -33,6 +33,7 @@ const BookAppointmentDialog = () => {
   }, []);
   const createBooking = async () => {
     // console.log(date, note, new Date(date).toDateString())
+    console.log(timeSlot,date)
     const query =
       gql`
                 mutation MyMutation {
