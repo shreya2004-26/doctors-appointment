@@ -4,7 +4,8 @@ import { Input } from '@/components/ui/input'
 import { Search, SearchIcon } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import CategoryCard from './CategoryCard'
-import { getAllCategories } from '../GlobalAPI'
+// import { getAllCategories } from '../GlobalAPI'
+import { gql, request } from "graphql-request"
 // import { categories } from '../_db/categories'
 
 const CategoryList = () => {
@@ -12,12 +13,21 @@ const CategoryList = () => {
     useEffect(() => {
         getCategory();
     }, [])
-    const getCategory = () => {
-        getAllCategories().then((resp) => {
-            setCategories(resp?.categories)
-        }).catch((err) => {
-            console.log(err)
-        })
+    const getCategory = async () => {
+        const query = gql`
+    query MyQuery {
+  categories {
+    id
+    slug
+    title
+    icon {
+      url
+    }
+  }
+}`
+        const resp = await request("https://ap-south-1.cdn.hygraph.com/content/clziauty900kl07urilz5i7w2/master", query)
+        console.log(resp)
+        setCategories(resp?.categories)
     }
     return (
         <div className='flex flex-col pt-20 items-center gap-8'>
@@ -44,5 +54,6 @@ const CategoryList = () => {
         </div>
     )
 }
+
 
 export default CategoryList

@@ -14,6 +14,7 @@ const DoctorCard = ({ id, name, category, address, experience, imgUrl }) => {
             <h2 className='font-bold'>{name}</h2>
             <h2 className='text-sm text-primary'>{experience}</h2>
             <h2 className='text-gray-500 text-sm'>{address}</h2>
+            {/* {console.log("id ", id)} */}
             <Button onClick={() => router.push(`/details/${id}`)} variant='ghost' className='border 
              text-primary rounded-full hover:bg-primary hover:text-white border-primary'>Book Now</Button>
         </div>

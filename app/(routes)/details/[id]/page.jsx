@@ -16,7 +16,7 @@ const page = () => {
     const getDoctorDetails = async () => {
         const query = gql`
         query MyQuery {
-  doctor(where: {id: "`+ path + `"}) {
+        doctor(where: {id: "`+ path + `"}) {
     about
     address
     experience
