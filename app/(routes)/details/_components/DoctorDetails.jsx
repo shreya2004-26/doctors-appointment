@@ -7,8 +7,8 @@ import BookAppointmentDialog from './BookAppointmentDialog'
 
 const DoctorDetails = ({ doctor }) => {
     return (
-        <div className='flex border p-4 rounded-xl shadow-sm gap-10 items-center'>
-            <Image src={doctor?.image?.url ?? "/doctor1.png"} width={2000} height={200} className='w-[280px] h-[280px] object-cover rounded-xl' alt={doctor?.name ?? "doctor"} />
+        <div className='flex flex-col md:flex-row border md:p-4 rounded-xl shadow-sm gap-10 items-center'>
+            <Image src={doctor?.image?.url ?? "/doctor1.png"} width={2000} height={200} className='mt-4 px-4 object-cover md:w-[280px] h-[280px] rounded-xl' alt={doctor?.name ?? "doctor"} />
             <div className='flex flex-col gap-2'>
                 <h2 className='text-xl font-bold'>{doctor?.name}</h2>
                 <h2 className='text-gray-500'>{`${doctor?.experience} of Experience`}</h2>
@@ -22,7 +22,7 @@ const DoctorDetails = ({ doctor }) => {
                 </div>
                 <Dialog>
                     <DialogTrigger asChild>
-                        <Button className='w-fit rounded-full mt-4'>Book Appointment</Button>
+                        <Button className='w-fit rounded-full mt-4 mb-2'>Book Appointment</Button>
                     </DialogTrigger>
                     <BookAppointmentDialog />
                 </Dialog>

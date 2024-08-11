@@ -13,24 +13,25 @@ import { gql, request } from "graphql-request";
 import { useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import axios from "axios";
+import { toast } from "sonner";
 
 const BookAppointmentDialog = () => {
   const [date, setDate] = useState(new Date());
-  console.log(
-    date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate()
-  );
+  // console.log(
+  //   date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate()
+  // );
   const [note, setNote] = useState("");
   const [timeSlot, setSelectedTimeSlot] = useState("");
   const { user } = useUser();
-  console.log("user is ", user);
+ 
   const doctorId = usePathname().split("/")[2];
-  console.log(doctorId);
+;
 
-  useEffect(() => {
-    // setTime();
+  // useEffect(() => {
+  //   // setTime();
 
-    createBooking();
-  }, []);
+  //   createBooking();
+  // }, []);
   const createBooking = async () => {
     // console.log(date, note, new Date(date).toDateString())
     console.log(timeSlot,date)
@@ -74,6 +75,7 @@ const BookAppointmentDialog = () => {
       query
     );
     console.log("Booking created:", resp?.createBooking);
+    toast("Appointment Booked Successfully! ")
     try {
       //create post data
       const postData = {
@@ -85,8 +87,11 @@ const BookAppointmentDialog = () => {
         image: resp?.createBooking?.doctors?.image?.url,
       };
       const res = await axios.post("http://localhost:3000/api/send", postData);
-      console.log("send", res);
+      // console.log("send", res);
+      
+
     } catch (err) {
+      toast("Error While Booking Appointment! ")
       console.log(err);
     }
   };
@@ -113,14 +118,15 @@ const BookAppointmentDialog = () => {
   ];
 
   return (
-    <DialogContent className="max-w-[700px] h-[600px]">
-      <div className="flex flex-col  gap-2">
+    <DialogContent className="max-w-[350px] md:max-w-[700px] md:h-[600px] ">
+      
+      <div className="flex flex-col  gap-2 w-fit h-fit">
         <h1 className="font-semibold text-xl">Book Appointment</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 p-2 gap-5 mt-3">
           <div className="cols-span-1 flex flex-col gap-3">
             <h2 className=" flex gap-2 text-sm text-gray-500">
               {" "}
-              <CalendarRange className="text-primary w-5 h-5" /> Select Date
+              <CalendarRange className="text-primary w-3 md:w-5 h-5" /> Select Date
             </h2>
             <Calendar
               mode="single"
@@ -129,18 +135,18 @@ const BookAppointmentDialog = () => {
               className="rounded-xl border w-full"
             />
           </div>
-          <div className=" flex flex-col gap-3">
+          <div className=" flex flex-col gap-3 ">
             <h2 className="flex gap-2 text-sm text-gray-500">
               {" "}
               <Clock className="text-primary w-5 h-5" /> Select Time Slot
             </h2>
-            <div className="grid grid-cols-3 border rounded-xl gap-y-6 pl-5 py-5">
+            <div className="grid grid-cols-3 border rounded-xl gap-y-4 p-5 gap-x-2 ">
               {times?.map((curr, index) => {
                 return (
                   <h2
                     onClick={() => setSelectedTimeSlot(curr)}
-                    className={`cursor-pointer ${
-                      timeSlot === curr ? "text-blue-500 font-semibold" : ""
+                    className={`text-center cursor-pointer  border rounded-full text-sm text-gray-500 py-1${
+                      timeSlot === curr ? " text-green-50 bg-blue-500 text-center" : ""
                     }`}
                     key={index}
                   >

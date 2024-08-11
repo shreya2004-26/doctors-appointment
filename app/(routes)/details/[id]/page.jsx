@@ -39,15 +39,15 @@ const page = () => {
 
     }
     return (
-        <div className='grid grid-cols-5 mt-6 gap-5'>
-            <div className='col-span-4'>
+        <div className='grid grid-cols-1 md:grid-cols-5 mt-6 gap-5'>
+            <div className='col-span-3 md:col-span-4'>
                 <div className='flex flex-col gap-4'>
                     <h2 className='font-bold text-xl'>Details</h2>
                     <DoctorDetails doctor={doctor} />
                     <About data={doctor?.about} />
                 </div>
             </div>
-            <div className='col-span-1'>
+            <div className='col-span-2 md:col-span-1'>
                 <SuggestionList id={path} />
             </div>
         </div>

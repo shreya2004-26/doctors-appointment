@@ -5,7 +5,7 @@ import BookingList from './_components/BookingList'
 
 const page = () => {
     return (
-        <div className='max-w-full'>
+        <div className='md:max-w-full'>
             <h1 className='text-2xl font-bold mb-5'>My Booking</h1>
             <Tabs defaultValue="upcoming" className="w-[400px]">
                 <TabsList>

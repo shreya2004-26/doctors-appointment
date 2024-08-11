@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Provider from "./Provider";
+import { Toaster } from '@/components/ui/sonner'
 import {
   ClerkProvider,
   SignInButton,
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body className={inter.className} suppressHydrationWarning={true}>
           <Provider children={children} />
+          <Toaster/>
         </body>
       </html>
     </ClerkProvider>

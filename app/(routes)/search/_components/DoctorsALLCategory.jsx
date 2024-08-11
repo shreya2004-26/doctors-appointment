@@ -11,13 +11,13 @@ import React from 'react'
 const DoctorsALLCategory = () => {
     const path = usePathname().split('/')[2];
     return (
-        <div className='flex flex-col gap-4'>
-            <div className='flex flex-row items-center border-b'>
+        <div className='flex flex-col gap-4 w-full '>
+            <div className='flex flex-row items-center border-b w-full '>
                 <Search className='w-4 h-4 text-gray-500' />
                 <Input placeholder='Type a command or search...' className='border-none outline-none text-gray-500 text-sm ' />
             </div>
             <h2 className='text-xs text-slate-500'>Suggestions</h2>
-            <div className='flex flex-col gap-4'>
+            <div className='flex flex-col gap-4 w-fit'>
                 {categories?.map((curr, index) => (
                     <Link href={`/search/${curr?.slug}`} key={index} className={`flex gap-2 items-center  py-2 pr-10 pl-2 rounded-md cursor-pointer ${curr?.slug === path
                         ? 'bg-blue-100 hover:bg-blue-100' : "hover:bg-gray-100"

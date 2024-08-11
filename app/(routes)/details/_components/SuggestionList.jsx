@@ -31,7 +31,7 @@ const SuggestionList = ({ id }) => {
 
     }
     return (
-        <div className='flex flex-col gap-3 mt-9 border rounded-xl shadow-sm  py-3'>
+        <div className='flex flex-col gap-3 md:mt-9 border rounded-xl shadow-sm py-3 w-full'>
             <h1 className='font-semibold px-5 text-[15px]'>Suggestions
             </h1>
             {

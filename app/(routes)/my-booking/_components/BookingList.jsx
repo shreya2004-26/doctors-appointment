@@ -35,11 +35,11 @@ query MyQuery {
       "https://ap-south-1.cdn.hygraph.com/content/clziauty900kl07urilz5i7w2/master",
       query
     );
-    console.log(resp?.bookings);
+    console.log("38 ",resp?.bookings);
     setBookings(resp?.bookings);
   };
   return (
-    <div className=" flex flex-col gap-5 w-full ">
+    <div className=" flex flex-col gap-5 w-[320px] md:w-full">
       {bookings?.map((curr, index) => {
         return ((tabValue==="upcoming" && moment(curr?.appointmentDate)>new Date()) || (tabValue==="expired" && moment(curr?.appointmentDate)<new Date())) && (
           <BookingCard
