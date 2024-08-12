@@ -10,11 +10,11 @@ const Header = () => {
     return (
         <div className='px-4 md:px-20'>
             <div className='flex justify-between py-5 px-2 items-center border-b-0 shadow-sm '>
-                <div className='flex gap-8 items-center'>
+                <div className='flex gap-4 md:gap-10 items-center'>
                     <Link href={"/"}>
                         <Image src='/logo.svg' width={200} height={30} className='w-[150px] md:w-[180px]' alt='logo' />
                     </Link>
-                    <Link href={'/my-booking'} className='hidden lg:block text-primary border border-gray-100 py-1 px-2 cursor-pointer rounded-full bg-blue-50 hover:bg-primary hover:text-white'>My Bookings</Link>
+                    <Link href={'/my-booking'} className='text-xs md:text-sm mt-1 cursor-pointer rounded-full hover:text-primary hover:scale-105'>My Bookings</Link>
                 </div>
 
                 {/* If user is signed in */}

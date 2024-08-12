@@ -5,6 +5,7 @@ import DoctorDetails from '../_components/DoctorDetails'
 import About from '../_components/About'
 import { usePathname } from 'next/navigation'
 import { gql, request } from "graphql-request"
+import { Skeleton } from '@/components/ui/skeleton'
 
 const page = () => {
     const path = usePathname().split('/')[2];
@@ -43,8 +44,10 @@ const page = () => {
             <div className='col-span-3 md:col-span-4'>
                 <div className='flex flex-col gap-4'>
                     <h2 className='font-bold text-xl'>Details</h2>
-                    <DoctorDetails doctor={doctor} />
-                    <About data={doctor?.about} />
+                    { doctor==null? <Skeleton className="w-[1064px] h-[330px] rounded-xl" />
+                    :<DoctorDetails doctor={doctor} />}
+                    {doctor==null? <Skeleton className="w-[1064px] h-[255px] rounded-xl" />
+                        :<About data={doctor?.about} />}
                 </div>
             </div>
             <div className='col-span-2 md:col-span-1'>

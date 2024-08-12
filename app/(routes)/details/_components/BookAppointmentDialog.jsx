@@ -14,8 +14,9 @@ import { useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import axios from "axios";
 import { toast } from "sonner";
+import Link from "next/link";
 
-const BookAppointmentDialog = () => {
+const BookAppointmentDialog = ({setOpen}) => {
   const [date, setDate] = useState(new Date());
   // console.log(
   //   date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate()
@@ -74,6 +75,10 @@ const BookAppointmentDialog = () => {
       "https://ap-south-1.cdn.hygraph.com/content/clziauty900kl07urilz5i7w2/master",
       query
     );
+    setNote("");
+    setSelectedTimeSlot("")
+    setDate(new Date());
+    setOpen(false);//to close the dialog
     console.log("Booking created:", resp?.createBooking);
     toast("Appointment Booked Successfully! ")
     try {
@@ -168,11 +173,12 @@ const BookAppointmentDialog = () => {
         <Button
           variant="ghost"
           className="border border-red-500 text-red-500 hover:text-black"
+          onClick={()=>setOpen(false)}
         >
           Close
         </Button>
         <Button type="submit" onClick={() => createBooking()}>
-          Submit
+          <Link href={'/my-booking'}>Submit</Link>
         </Button>
       </DialogFooter>
     </DialogContent>

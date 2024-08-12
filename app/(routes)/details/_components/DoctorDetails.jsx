@@ -2,10 +2,11 @@ import { Button } from '@/components/ui/button'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import { LocateIcon } from 'lucide-react'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import BookAppointmentDialog from './BookAppointmentDialog'
 
 const DoctorDetails = ({ doctor }) => {
+    const [open,setOpen] = useState(false);
     return (
         <div className='flex flex-col md:flex-row border md:p-4 rounded-xl shadow-sm gap-10 items-center'>
             <Image src={doctor?.image?.url ?? "/doctor1.png"} width={2000} height={200} className='mt-4 px-4 object-cover md:w-[280px] h-[280px] rounded-xl' alt={doctor?.name ?? "doctor"} />
@@ -20,11 +21,11 @@ const DoctorDetails = ({ doctor }) => {
                     <Image src='/twitter.png' alt='twitter' width={200} height={100} className='w-[25px]' />
                     <Image src='/facebook.png' alt='twitter' width={200} height={100} className='w-[25px]' />
                 </div>
-                <Dialog>
+                <Dialog open={open}>
                     <DialogTrigger asChild>
-                        <Button className='w-fit rounded-full mt-4 mb-2'>Book Appointment</Button>
+                        <Button className='w-fit rounded-full mt-4 mb-2' onClick={()=>setOpen(true)}>Book Appointment</Button>
                     </DialogTrigger>
-                    <BookAppointmentDialog />
+                    <BookAppointmentDialog setOpen={setOpen}/>
                 </Dialog>
 
 

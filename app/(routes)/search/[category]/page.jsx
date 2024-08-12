@@ -5,6 +5,7 @@ import DoctorsALLCategory from '../_components/DoctorsALLCategory'
 import DoctorsSortedList from '../_components/DoctorsSortedList'
 import { usePathname } from 'next/navigation'
 import { doctors } from '@/app/_db/doctors'
+import { Skeleton } from '@/components/ui/skeleton'
 
 const page = () => {
     const slug = usePathname().split("/")[2];
@@ -40,12 +41,16 @@ const page = () => {
             <div className='col-span-4'>
                 <h2 className='text-xl font-bold capitalize'>{slug}</h2>
                 <div className='grid grid-cols-1 md:grid-cols-4 gap-5'>
-                    {
-                        doctors?.map((curr, index) => {
+                    {doctors==null? Array.from({length:4}).map((curr,index)=>{
+                        return(
+                            <Skeleton key={index}className="h-[390px] w-[214px] rounded-xl mt-5" />
+                        )
+                    }):
+                       (doctors.length==0?<h1 className='text-[16px] text-gray-600 mt-5'>No doctors available! </h1> :doctors?.map((curr, index) => {
                             return (
                                 <DoctorsSortedList key={index} data={curr} />
                             )
-                        })
+                        }))
 
                     }
                 </div>
