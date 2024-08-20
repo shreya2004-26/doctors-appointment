@@ -2,10 +2,7 @@
 
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
-import {
-  DialogContent,
-  DialogFooter,
-} from "@/components/ui/dialog";
+import { DialogContent, DialogFooter } from "@/components/ui/dialog";
 import React, { useEffect, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { CalendarRange, Clock } from "lucide-react";
@@ -16,7 +13,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import Link from "next/link";
 
-const BookAppointmentDialog = ({setOpen}) => {
+const BookAppointmentDialog = ({ setOpen }) => {
   const [date, setDate] = useState(new Date());
   // console.log(
   //   date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate()
@@ -24,10 +21,8 @@ const BookAppointmentDialog = ({setOpen}) => {
   const [note, setNote] = useState("");
   const [timeSlot, setSelectedTimeSlot] = useState("");
   const { user } = useUser();
- 
-  const doctorId = usePathname().split("/")[2];
-;
 
+  const doctorId = usePathname().split("/")[2];
   // useEffect(() => {
   //   // setTime();
 
@@ -35,7 +30,7 @@ const BookAppointmentDialog = ({setOpen}) => {
   // }, []);
   const createBooking = async () => {
     // console.log(date, note, new Date(date).toDateString())
-    console.log(timeSlot,date)
+    console.log(timeSlot, date);
     const query =
       gql`
                 mutation MyMutation {
@@ -76,11 +71,11 @@ const BookAppointmentDialog = ({setOpen}) => {
       query
     );
     setNote("");
-    setSelectedTimeSlot("")
+    setSelectedTimeSlot("");
     setDate(new Date());
-    setOpen(false);//to close the dialog
+    setOpen(false); //to close the dialog
     console.log("Booking created:", resp?.createBooking);
-    toast("Appointment Booked Successfully! ")
+    toast("Appointment Booked Successfully! ");
     try {
       //create post data
       const postData = {
@@ -93,10 +88,8 @@ const BookAppointmentDialog = ({setOpen}) => {
       };
       const res = await axios.post("http://localhost:3000/api/send", postData);
       // console.log("send", res);
-      
-
     } catch (err) {
-      toast("Error While Booking Appointment! ")
+      toast("Error While Booking Appointment! ");
       console.log(err);
     }
   };
@@ -124,14 +117,14 @@ const BookAppointmentDialog = ({setOpen}) => {
 
   return (
     <DialogContent className="max-w-[350px] md:max-w-[700px] md:h-[600px] ">
-      
       <div className="flex flex-col  gap-2 w-fit h-fit">
         <h1 className="font-semibold text-xl">Book Appointment</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 p-2 gap-5 mt-3">
           <div className="cols-span-1 flex flex-col gap-3">
             <h2 className=" flex gap-2 text-sm text-gray-500">
               {" "}
-              <CalendarRange className="text-primary w-3 md:w-5 h-5" /> Select Date
+              <CalendarRange className="text-primary w-3 md:w-5 h-5" /> Select
+              Date
             </h2>
             <Calendar
               mode="single"
@@ -151,7 +144,9 @@ const BookAppointmentDialog = ({setOpen}) => {
                   <h2
                     onClick={() => setSelectedTimeSlot(curr)}
                     className={`text-center cursor-pointer  border rounded-full text-sm text-gray-500 py-1${
-                      timeSlot === curr ? " text-green-50 bg-blue-500 text-center" : ""
+                      timeSlot === curr
+                        ? " text-green-50 bg-blue-500 text-center"
+                        : ""
                     }`}
                     key={index}
                   >
@@ -173,12 +168,12 @@ const BookAppointmentDialog = ({setOpen}) => {
         <Button
           variant="ghost"
           className="border border-red-500 text-red-500 hover:text-black"
-          onClick={()=>setOpen(false)}
+          onClick={() => setOpen(false)}
         >
           Close
         </Button>
         <Button type="submit" onClick={() => createBooking()}>
-          <Link href={'/my-booking'}>Submit</Link>
+          <Link href={"/my-booking"}>Submit</Link>
         </Button>
       </DialogFooter>
     </DialogContent>

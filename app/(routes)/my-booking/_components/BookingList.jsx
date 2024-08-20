@@ -68,7 +68,9 @@ query MyQuery {
           return <Skeleton className="h-[180px] w-[1300px] rounded-xl" />;
         })
       ) : bookings.length == 0 ? (
-        <h1 className="text-[16px] text-gray-600 mt-2">No bookings available!</h1>
+        <h1 className="text-[16px] text-gray-600 mt-2">
+          No bookings available!
+        </h1>
       ) : (
         bookings?.map((curr, index) => {
           return (
