@@ -25,12 +25,14 @@ const Header = () => {
               alt="logo"
             />
           </Link>
-          <Link
-            href={"/my-booking"}
-            className="text-xs md:text-sm mt-1 cursor-pointer rounded-full hover:text-primary hover:scale-105"
-          >
-            Bookings
-          </Link>
+          {user && (
+            <Link
+              href={"/my-booking"}
+              className="text-xs md:text-sm mt-1 cursor-pointer rounded-full hover:text-primary hover:scale-105"
+            >
+              Bookings
+            </Link>
+          )}
         </div>
         {user === undefined ? (
           <Button>Get Started</Button>

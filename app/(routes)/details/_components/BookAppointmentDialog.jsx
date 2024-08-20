@@ -11,26 +11,15 @@ import { useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import axios from "axios";
 import { toast } from "sonner";
-import Link from "next/link";
 
 const BookAppointmentDialog = ({ setOpen }) => {
   const [date, setDate] = useState(new Date());
-  // console.log(
-  //   date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate()
-  // );
   const [note, setNote] = useState("");
   const [timeSlot, setSelectedTimeSlot] = useState("");
   const { user } = useUser();
 
   const doctorId = usePathname().split("/")[2];
-  // useEffect(() => {
-  //   // setTime();
-
-  //   createBooking();
-  // }, []);
   const createBooking = async () => {
-    // console.log(date, note, new Date(date).toDateString())
-    console.log(timeSlot, date);
     const query =
       gql`
                 mutation MyMutation {
@@ -74,7 +63,6 @@ const BookAppointmentDialog = ({ setOpen }) => {
     setSelectedTimeSlot("");
     setDate(new Date());
     setOpen(false); //to close the dialog
-    console.log("Booking created:", resp?.createBooking);
     toast("Appointment Booked Successfully! ");
     try {
       //create post data
@@ -86,11 +74,9 @@ const BookAppointmentDialog = ({ setOpen }) => {
         doctorName: resp?.createBooking?.doctors?.name,
         image: resp?.createBooking?.doctors?.image?.url,
       };
-      const res = await axios.post("http://localhost:3000/api/send", postData);
-      // console.log("send", res);
+      await axios.post("http://localhost:3000/api/send", postData);
     } catch (err) {
       toast("Error While Booking Appointment! ");
-      console.log(err);
     }
   };
 
@@ -116,7 +102,7 @@ const BookAppointmentDialog = ({ setOpen }) => {
   ];
 
   return (
-    <DialogContent className="max-w-[350px] md:max-w-[700px] md:h-[600px] ">
+    <DialogContent className="max-w-[330px] md:max-w-fit md:h-[600px] max-h-[600px] overflow-y-auto">
       <div className="flex flex-col  gap-2 w-fit h-fit">
         <h1 className="font-semibold text-xl">Book Appointment</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 p-2 gap-5 mt-3">
@@ -145,7 +131,7 @@ const BookAppointmentDialog = ({ setOpen }) => {
                     onClick={() => setSelectedTimeSlot(curr)}
                     className={`text-center cursor-pointer  border rounded-full text-sm text-gray-500 py-1${
                       timeSlot === curr
-                        ? " text-green-50 bg-blue-500 text-center"
+                        ? " text-green-50 bg-blue-500 text-center border-blue-500"
                         : ""
                     }`}
                     key={index}
@@ -164,16 +150,16 @@ const BookAppointmentDialog = ({ setOpen }) => {
           onChange={(e) => setNote(e.target.value)}
         />
       </div>
-      <DialogFooter>
+      <DialogFooter className="flex gap-3">
         <Button
           variant="ghost"
-          className="border border-red-500 text-red-500 hover:text-black"
+          className="border border-red-500 text-red-500 hover:text-red-500 hover:bg-transparent"
           onClick={() => setOpen(false)}
         >
           Close
         </Button>
         <Button type="submit" onClick={() => createBooking()}>
-          <Link href={"/my-booking"}>Submit</Link>
+          Submit
         </Button>
       </DialogFooter>
     </DialogContent>

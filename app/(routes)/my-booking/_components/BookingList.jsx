@@ -7,7 +7,6 @@ import moment from "moment";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const BookingList = ({ tabValue }) => {
-  console.log(tabValue);
   const { user } = useUser();
   const [bookings, setBookings] = useState(null);
   const [bookingDeleted, setBookingDeleted] = useState(false); //globally declare state
@@ -15,10 +14,8 @@ const BookingList = ({ tabValue }) => {
   //it will call when page is render or state will change
   useEffect(() => {
     user && getBookings(user?.id);
-    console.log("hello");
   }, [user]); //initially user is undefined . after some time user will become a object
   useEffect(() => {
-    console.log("hello");
     getBookings(user?.id);
   }, [bookingDeleted]); //initially user is undefined . after some time user will become a object
   const getBookings = async (userId) => {
@@ -45,7 +42,6 @@ query MyQuery {
       "https://ap-south-1.cdn.hygraph.com/content/clziauty900kl07urilz5i7w2/master",
       query
     );
-    console.log("38 ", resp?.bookings);
     const totalBookings = resp?.bookings;
     if (tabValue === "upcoming") {
       setBookings(
