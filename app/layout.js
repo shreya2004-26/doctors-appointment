@@ -3,11 +3,7 @@ import "./globals.css";
 import Provider from "./Provider";
 import { Toaster } from '@/components/ui/sonner'
 import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton
+  ClerkProvider
 } from '@clerk/nextjs'
 
 const inter = Inter({ subsets: ["latin"] });
